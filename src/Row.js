@@ -11,6 +11,7 @@ var joinClasses      = require('classnames');
 var Cell            = require('./Cell');
 var ColumnMetrics   = require('./ColumnMetrics');
 var ColumnUtilsMixin  = require('./ColumnUtils');
+var cloneElement = React.cloneElement;
 
 type RowPropsType = {
   height: number;
@@ -122,7 +123,7 @@ var Row = React.createClass({
       this.props.cellRenderer.call(this, props);
     }
     if (React.isValidElement(this.props.cellRenderer)) {
-      return cloneWithProps(this.props.cellRenderer, props);
+      return cloneElement(this.props.cellRenderer, props);
     } else {
       return this.props.cellRenderer(props);
     }

@@ -11,11 +11,18 @@ var ImageFormatter = React.createClass({
   getInitialState() {
     return {
       ready: false,
+      isMounted: false
     };
   },
 
   componentWillMount() {
     this._load(this.props.value);
+  },
+
+  componentDidMount() {
+    this.setState({
+      isMounted: true
+    });
   },
 
   componentWillReceiveProps(nextProps) {
@@ -40,11 +47,11 @@ var ImageFormatter = React.createClass({
     }
 
     if (PendingPool[src]) {
-      PendingPool[src].push(this._onLoad);
+      PendingPool[src].push(this._onLoad.bind(this));
       return;
     }
 
-    PendingPool[src] = [this._onLoad];
+    PendingPool[src] = [this._onLoad.bind(this)];
 
     var img = new Image();
     img.onload = () => {
@@ -59,7 +66,7 @@ var ImageFormatter = React.createClass({
   },
 
   _onLoad(/*string*/ src) {
-    if (this.isMounted() && src === this.props.value) {
+    if (this.state.isMounted && src === this.props.value) {
       this.setState({
         value: src,
       });

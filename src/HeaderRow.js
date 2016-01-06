@@ -6,7 +6,7 @@
 
 var React             = require('react');
 var PropTypes         = React.PropTypes;
-var shallowEqual      = require('react/lib//shallowEqual');
+var shallowCompare      = require('react/lib/shallowCompare');
 var HeaderCell        = require('./HeaderCell');
 var getScrollbarSize  = require('./getScrollbarSize');
 var ExcelColumn  = require('./addons/grids/ExcelColumn');
@@ -111,7 +111,7 @@ var HeaderRow = React.createClass({
       nextProps.width !== this.props.width
       || nextProps.height !== this.props.height
       || nextProps.columns !== this.props.columns
-      || !shallowEqual(nextProps.style, this.props.style)
+      || !shallowCompare(nextProps.style, this.props.style)
       || this.props.sortColumn != nextProps.sortColumn
       || this.props.sortDirection != nextProps.sortDirection
     );

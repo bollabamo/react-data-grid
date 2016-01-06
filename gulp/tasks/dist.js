@@ -3,7 +3,6 @@ var gutil     = require("gulp-util");
 var bundle   = require("./bundle");
 var uglify = require('gulp-uglify');
 var webpackConfig = require("../../config/webpack.js");
-var gulp = require('gulp');
 var rename = require('gulp-rename');
 
 gulp.task("dist", function(callback) {

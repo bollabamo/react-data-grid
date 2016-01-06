@@ -8,11 +8,11 @@
 
 var React             = require('react');
 var joinClasses       = require('classnames');
-var cloneWithProps    = require('react/lib/cloneWithProps');
 var EditorContainer   = require('./addons/editors/EditorContainer');
 var ExcelColumn       = require('./addons/grids/ExcelColumn');
 var isFunction        = require('./addons/utils/isFunction');
 var CellMetaDataShape = require('./PropTypeShapes/CellMetaData');
+var cloneElement      = React.cloneElement;
 
 var Cell = React.createClass({
 
@@ -44,11 +44,14 @@ var Cell = React.createClass({
 
 
   getInitialState(){
-    return {isRowChanging: false, isCellValueChanging: false}
+    return {isRowChanging: false, isCellValueChanging: false, isMounted: false}
   },
 
   componentDidMount: function() {
     this.checkFocus();
+    this.setState({
+      isMounted: true
+    });
   },
 
 
@@ -116,7 +119,7 @@ var Cell = React.createClass({
     var Formatter = this.getFormatter();
     if(React.isValidElement(Formatter)){
       props.dependentValues = this.getFormatterDependencies()
-      CellContent = cloneWithProps(Formatter, props);
+      CellContent = cloneElement(Formatter, props);
     }else if(isFunction(Formatter)){
         CellContent = <Formatter value={this.props.value} dependentValues={this.getFormatterDependencies()}/>;
     } else {
@@ -249,8 +252,7 @@ var Cell = React.createClass({
   },
 
   setScrollLeft(scrollLeft: number) {
-    var ctrl: any = this; //flow on windows has an outdated react declaration, once that gets updated, we can remove this
-    if (ctrl.isMounted()) {
+    if (this.state.isMounted) {
       var node = React.findDOMNode(this);
       var transform = `translate3d(${scrollLeft}px, 0px, 0px)`;
       node.style.webkitTransform = transform;
