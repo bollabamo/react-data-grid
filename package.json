@@ -3,12 +3,6 @@
   "version": "0.13.24",
   "description": "Data grid for React",
   "main": "src/index.js",
-  "scripts": {
-    "test": "gulp test",
-    "postinstall": "cd node_modules/react-data-grid && gulp dist --release true",
-    "debug-test": "gulp test --debug true",
-    "examples": "gulp"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/adazzle/react-data-grid.git"
