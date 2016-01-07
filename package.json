@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "gulp test",
-    "postinstall": "gulp dist --release true",
+    "postinstall": "cd node_modules/react-data-grid && gulp dist --release true",
     "debug-test": "gulp test --debug true",
     "examples": "gulp"
   },
