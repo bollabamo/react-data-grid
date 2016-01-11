@@ -76,7 +76,7 @@ module.exports = {
     var columns = this.state.columnMetrics.columns;
     if(Array.isArray(columns)){
       return columns[idx];
-    }else if (typeof Immutable !== 'undefined') {
+    } else if (typeof Immutable !== 'undefined') {
       return columns.get(idx);
     }
   },

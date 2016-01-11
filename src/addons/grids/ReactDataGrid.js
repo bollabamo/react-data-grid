@@ -13,11 +13,11 @@ var ExcelColumn           = require('./ExcelColumn');
 var KeyboardHandlerMixin  = require('../../KeyboardHandlerMixin');
 var CheckboxEditor        = require('../editors/CheckboxEditor');
 var FilterableHeaderCell  = require('../cells/headerCells/FilterableHeaderCell');
-var cloneWithProps        = require('react/lib/cloneWithProps');
 var DOMMetrics           = require('../../DOMMetrics');
 var ColumnMetricsMixin      = require('../../ColumnMetricsMixin');
 var RowUtils = require('../../RowUtils');
 var ColumnUtils = require('../../ColumnUtils');
+var cloneElement = React.cloneElement;
 
 if(!Object.assign){
   Object.assign = require('object-assign');
@@ -179,7 +179,7 @@ var ReactDataGrid = React.createClass({
   renderToolbar(): ReactElement {
     var Toolbar = this.props.toolbar;
     if(React.isValidElement(Toolbar)){
-      return( cloneWithProps(Toolbar, {onToggleFilter : this.onToggleFilter, numberOfRows : this.props.rowsCount}));
+      return( cloneElement(Toolbar, {onToggleFilter : this.onToggleFilter, numberOfRows : this.props.rowsCount}));
     }
 
   },

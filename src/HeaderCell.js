@@ -7,11 +7,11 @@
 "use strict";
 
 var React          = require('react');
-var joinClasses     = require('classnames');
-var cloneWithProps = require('react/lib/cloneWithProps');
+var joinClasses    = require('classnames');
 var PropTypes      = React.PropTypes;
 var ExcelColumn    = require('./addons/grids/ExcelColumn');
 var ResizeHandle   = require('./ResizeHandle');
+var cloneElement   = React.cloneElement;
 
 var HeaderCell = React.createClass({
 
@@ -49,7 +49,7 @@ var HeaderCell = React.createClass({
 
   getCell(): ReactComponent {
     if (React.isValidElement(this.props.renderer)) {
-      return cloneWithProps(this.props.renderer, {column : this.props.column});
+      return cloneElement(this.props.renderer, {column : this.props.column});
     } else {
       var Renderer = this.props.renderer;
       return this.props.renderer({column: this.props.column});

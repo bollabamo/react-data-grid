@@ -3,12 +3,6 @@
   "version": "0.13.24",
   "description": "Data grid for React",
   "main": "src/index.js",
-  "scripts": {
-    "test": "gulp test",
-    "prepublish": "gulp dist --release true",
-    "debug-test": "gulp test --debug true",
-    "examples": "gulp"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/adazzle/react-data-grid.git"
@@ -19,13 +13,13 @@
     "react-component"
   ],
   "peerDependencies": {
-    "react": "~0.13.3"
+    "react": "~0.14.3"
   },
   "dependencies": {
     "classnames": "^1.2.0",
     "es5-shim": "^4.0.3",
     "object-assign": "^2.0.0",
-    "react": "~0.13.3",
+    "react": "~0.14.3",
     "ron-react-autocomplete": "2.0.1"
   },
   "devDependencies": {
